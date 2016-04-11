@@ -1,0 +1,23 @@
+
+version: '2'
+
+services:
+  client:
+    image: misterxgame/client:${TAG}
+  admin:
+    image: misterxgame/admin:${TAG}
+  backend:
+    image: misterxgame/backend:${TAG}
+    links:
+      - mongodb
+    environment:
+      JWT_SECRET:
+      JWT_AUTHSCHEME: 
+      GITHUB_CLIENT_ID:
+      GITHUB_CLIENT_SECRET:
+      GITHUB_ADMIN_ID:
+      GITHUB_ADMIN_SECRET:
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - ${MONGODB_VOLUME}:/var/lib/mongodb
